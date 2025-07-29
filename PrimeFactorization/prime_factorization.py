@@ -1,6 +1,6 @@
 # Decomposes a positive integer into its prime factors
 def factorize(num):
-    assert num > 0, 'number should be positive'
+    assert num > 1, 'number should be greater than 1'
     res = []
     divisor = 2
     while num != 1:
