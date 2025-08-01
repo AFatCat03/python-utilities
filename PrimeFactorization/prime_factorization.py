@@ -1,3 +1,5 @@
+import sys
+
 # Decomposes a positive integer into its prime factors
 def factorize(num):
     assert num > 1, 'number should be greater than 1'
@@ -10,7 +12,14 @@ def factorize(num):
         divisor += 1
     return res
 
-num = int(input('Enter a positive integer: '))
+
+assert len(sys.argv) <= 2, 'Too much command line arguments'
+
+if len(sys.argv) == 2:
+    num = int(sys.argv[1])
+else:
+    num = int(input('Enter a positive integer: '))
+
 factors = factorize(num)
 print(f'The prime factors of {num} is: ', end='')
 for factor in factors[:-1]:
