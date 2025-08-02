@@ -13,15 +13,16 @@ def factorize(num):
     return res
 
 
-assert len(sys.argv) <= 2, 'Too much command line arguments'
-
-if len(sys.argv) == 2:
-    num = int(sys.argv[1])
+if len(sys.argv) == 1:
+    nums = [int(input('Enter a positive integer: '))]
 else:
-    num = int(input('Enter a positive integer: '))
+    nums = []
+    for i in range(1, len(sys.argv)):
+        nums.append(int(sys.argv[i]))
 
-factors = factorize(num)
-print(f'The prime factors of {num} is: ', end='')
-for factor in factors[:-1]:
-    print(f'{factor} * ', end='')
-print(f'{factors[-1]}')
+for num in nums:
+    factors = factorize(num)
+    print(f'The prime factors of {num} is: ', end='')
+    for factor in factors[:-1]:
+        print(f'{factor} * ', end='')
+    print(f'{factors[-1]}')
