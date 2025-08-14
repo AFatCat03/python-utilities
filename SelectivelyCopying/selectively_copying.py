@@ -17,7 +17,7 @@ def selectively_copy(extension, source, destination):
         p = Path(folder_name)
         for filename in filenames:
             if len(filename) >= extension_len and filename[-extension_len:] == extension:
-                print(f'{folder_name}\{filename}')
+                print(f'{folder_name}\\{filename}')
                 file_path = p / f'{filename}'
                 output_path = destination / f'{filename[:-extension_len]}#1{extension}'
                 while os.path.exists(output_path):
@@ -27,8 +27,13 @@ def selectively_copy(extension, source, destination):
                 shutil.copy(file_path, output_path)
 
 
-extension = sys.argv[1] if len(sys.argv) > 1 else '.png'
-source = Path(sys.argv[2] if len(sys.argv) > 2 else 'D:/Latex')
-destination = Path(sys.argv[3] if len(sys.argv) > 3 else source / f'{extension[1:]}_folder')
+if len(sys.argv) == 1:
+    extension = input('Enter file extension: ')
+    source = input('Enter source folder: ')
+    destination = input('Enter destination folder: ')
+else:
+    extension = sys.argv[1] if len(sys.argv) > 1 else '.png'
+    source = Path(sys.argv[2] if len(sys.argv) > 2 else 'D:/Latex')
+    destination = Path(sys.argv[3] if len(sys.argv) > 3 else source / f'{extension[1:]}_folder')
 
 selectively_copy(extension, source, destination)
